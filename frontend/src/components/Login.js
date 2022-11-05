@@ -1,14 +1,32 @@
-import React from 'react'
-import { Col, Row, Button, Checkbox, Form, Input } from 'antd';
+import React, { useState } from 'react'
+import { Col, Row, Button, Form, Input } from 'antd';
+import http from '../api/main'
 import style from '../style/LoginPage.module.css'
 
-const Login = () => {
-	const onFinish = (values) => {
-		console.log('Success:', values);
+const Login = ({ setIsLogin }) => {
+	const [signUp, setSignUp] = useState(false);
+	console.log('first', signUp)
+	const onFinish = async (values) => {
+		try {
+			let loginRes = await http({
+				url: '/login',
+				method: 'POST',
+				data: {
+					values
+				}
+			})
+
+			if (loginRes.data.success) setIsLogin(true)
+
+		} catch (error) {
+			console.log(error)
+		}
 	};
+
 	const onFinishFailed = (errorInfo) => {
 		console.log('Failed:', errorInfo);
 	};
+
 	return (
 		<div className={style.container}>
 			<Row
@@ -36,7 +54,7 @@ const Login = () => {
 							rules={[
 								{
 									required: true,
-									message: 'Please input your username!',
+									message: 'Please input your e-mail!',
 								},
 							]}
 						>
@@ -54,6 +72,18 @@ const Login = () => {
 						>
 							<Input.Password className={style.loginInput} placeholder='password' />
 						</Form.Item>
+						<Form.Item
+							name="passwordTwo"
+							hidden={!signUp}
+							rules={[
+								{
+									required: signUp,
+									message: 'Please input your password again!',
+								},
+							]}
+						>
+							<Input.Password className={style.loginInput} placeholder='password again' />
+						</Form.Item>
 
 						<Form.Item
 							wrapperCol={{
@@ -67,12 +97,15 @@ const Login = () => {
 								type="primary"
 								htmlType="submit"
 							>
-								LOGIN
+								{signUp ? 'REGISTER' : 'LOGIN'}
 							</Button>
 						</Form.Item>
 					</Form>
 					<div className={style.signUp}>
-						<h4>Don't have an account? <a>Sign Up</a></h4>
+						<h4>
+							{!signUp ? "Don't have an account?" : "We look forward to seeing you!"}
+							<a onClick={() => setSignUp(!signUp)}>{!signUp ? ' Sign Up' : ' Sign In'}</a>
+						</h4>
 					</div>
 				</Col>
 			</Row>

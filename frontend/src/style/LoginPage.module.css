@@ -32,7 +32,7 @@
 .loginInput {
     border-radius: 7px !important;
     padding: 1vh 0.5vw !important;
-    margin: 0.5vh 0 !important;
+    margin: 0.3vh 0 !important;
 }
 
 .submitButton {
@@ -40,6 +40,8 @@
     border: none !important;
     height: 5vh !important;
     border-radius: 7px !important;
+    font-size: medium !important;
+    font-weight: 700 !important;
 }
 
 .signUp {

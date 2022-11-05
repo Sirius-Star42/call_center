@@ -4,7 +4,7 @@ const a = require('../models/index')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-	res.send({'name': 'test'}, 404)
+	res.send({'name': 'test'}, 200)
 	// res.render('index', { title: 'Express' });
 });
 
