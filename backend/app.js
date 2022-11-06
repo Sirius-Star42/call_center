@@ -6,7 +6,7 @@ var logger = require('morgan');
 const cors = require('cors');
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: `http://localhost:${process.env.PORT || 3000}`,
   credentials: true,           
   optionSuccessStatus: 200
 }

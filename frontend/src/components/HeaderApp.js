@@ -12,9 +12,7 @@ const HeaderApp = () => {
                 <div>brand logo</div>
                 <div className={style.headerRight}>
                     <div>
-                        <a>
-                            <UserOutlined />
-                        </a>
+                        <a><UserOutlined /></a>
                     </div>
                 </div>
             </Header>
