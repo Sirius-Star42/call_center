@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import Login from './components/Login'
+import MainPage from './components/MainPage'
+
 
 
 const App = () => {
@@ -7,7 +9,8 @@ const App = () => {
 
   return (
     <div>
-      <Login setIsLogin={setIsLogin} />
+      {/* <Login setIsLogin={setIsLogin} /> */}
+      <MainPage />
     </div>
   )
 }
